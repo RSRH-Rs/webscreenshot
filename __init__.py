@@ -1,8 +1,6 @@
-import greenlet
 import os
 from hoshino import Service, priv, R
 from hoshino.typing import CQEvent
-import asyncio
 from .utils import *
 from nonebot import MessageSegment
 

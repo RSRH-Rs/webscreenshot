@@ -1,8 +1,6 @@
 import os
 import re
-import requests
 from playwright.async_api import async_playwright
-import time
 import asyncio
 import os
 from datetime import datetime
