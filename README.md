@@ -10,6 +10,7 @@ git clone https://github.com/RSRH-Rs/Hoshino-plugin-webscreenshot.git
 2.依赖：
 ````
 pip install playwright~=1.32.1
+playwright install
 ````
 
 3.启用模块
