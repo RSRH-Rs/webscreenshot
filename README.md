@@ -9,6 +9,7 @@ git clone https://github.com/RSRH-Rs/Hoshino-plugin-webscreenshot.git
 
 2.依赖：
 ````
+pip install aiohttp~=3.8.4
 pip install playwright~=1.32.1
 playwright install
 ````
@@ -19,9 +20,17 @@ playwright install
 
 然后重启 HoshinoBot
 
-触发关键词：'网页截图','网页预览'
+触发关键词：`网页截图`,`网页预览`
 
 当有以http/https开头的链接会自动发送网页截图
+
+4.配置文件
+在config.py里面设置是否开启绿标检测
+如果不开，群友发什么网站都会截图(包括色情暴力)
+````
+qq_certification_status: bool = True  # 是否开启QQ绿标检测
+````
+
 
 **渣代码,欢迎提出改进建议~**
 
