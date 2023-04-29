@@ -36,25 +36,27 @@ async def screenshot(bot, ev: CQEvent):
     url = str(ev.message.extract_plain_text()).strip()
     message_id = int(ev.message_id)
     save_path = get_path("temp")
-    nowtime = getNowtime()
+    nowtime = str(getNowtime())
     result = await screen_shot(url, nowtime)
     if result != "success":
         await bot.finish(ev,MessageSegment.reply(message_id)+result)
         # await bot.finish(ev, f"[CQ:reply,id={message_id}][CQ:at,qq={uid}]{result}")
 
-    await bot.send(ev, f"{MessageSegment.image(f'file:///{save_path}/{nowtime}.png')}")
-    os.remove(fr'{save_path}\{nowtime}.png')
+    await bot.send(ev, f"{MessageSegment.image(f'file:///{get_path(save_path,nowtime)}.png')}")
+    os.remove(fr'{get_path(save_path,nowtime)}.png')
+    # print("图片移除成功！")
 
 
 @sv.on_prefix(('http', 'https'), only_to_me=False)
 async def preview(bot, ev: CQEvent):
     url = str(ev.raw_message).strip()
     uid = str(ev.user_id)
-    nowtime = getNowtime()
+    nowtime = str(getNowtime())
     message_id = int(ev.message_id)
     save_path = get_path("temp")
     result = await screen_shot(url, nowtime)
     if result != "success":
         await bot.finish(ev,MessageSegment.reply(message_id)+result)
-    await bot.send(ev, f"{MessageSegment.image(f'file:///{save_path}/{nowtime}.png')}")
-    os.remove(fr'{save_path}\{nowtime}.png')
+    await bot.send(ev, f"{MessageSegment.image(f'file:///{get_path(save_path,nowtime)}.png')}")
+    os.remove(fr'{get_path(save_path,nowtime)}.png')
+    # print("图片移除成功！")

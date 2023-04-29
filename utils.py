@@ -39,10 +39,12 @@ async def screen_shot(url: str, nowTime: int) -> Optional[str or bool]:
         page = await browser.new_page()
         try:
             await page.goto(url)
-        except:
-            return f"访问网站超时"
+        except Exception as e:
+            return f"访问网站超时{type(e)}`{e}`"
         await asyncio.sleep(1)
-        await page.screenshot(path=fr"{save_path}\{nowTime}.png", full_page=True)
+        hoshino.logger.error("[Warning]正在保存图片...")
+        await page.screenshot(path=fr"{get_path(save_path,str(nowTime))}.png", full_page=True)
+        hoshino.logger.error("[Warning]图片保存成功！")
         await browser.close()
         return "success"
 
