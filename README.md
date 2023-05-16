@@ -14,8 +14,7 @@ git clone https://github.com/RSRH-Rs/webscreenshot.git
 2.依赖：
 
 ```
-pip install aiohttp~=3.8.4
-pip install playwright~=1.32.1
+pip install -r requirements.txt
 playwright install
 ```
 
@@ -30,16 +29,18 @@ playwright install
 当有以 http/https 开头的链接会自动发送网页截图
 
 4.配置文件
-在 config.py 里面设置是否开启绿标检测
+指令：`切换绿标检测状态 + false/关闭`，除了`false/关闭`以外的任何输入都会将设置重置为`True`
 如果不开，群友发什么网站都会截图(包括色情暴力)
-
-```
-qq_certification_status: bool = True  # 是否开启QQ绿标检测
-```
 
 ## 其他
 
 Linux 和 Windows 都已测过，完美运行~
-Linux 安装 playwright 的话看具体提示(貌似是`apt install playwright-dev`，我也忘了，具体看调用 playwright 报错信息)
+~~Linux 安装 playwright 的话看具体提示(貌似是`apt install playwright-dev`，我也忘了，具体看调用 playwright 报错信息)~~
 
 **渣代码,欢迎提出改进建议~**
+Pull Request lists:
+- 添加`切换绿标检测状态`，无需再手动改动代码文件
+- 添加`requirements.txt`，一键安装依赖
+- 移除`get_path()`函数，实际使用问题很多，直接在每个需要的位置手动配置相对路径会更安全
+- 使用`pillow`库对截图进行压缩，防止图片太大被QQ风控
+- 绿标检测更改为`aiorequests.get()`，这个函数本身就是异步的，同时配置请求头防止获取失败
