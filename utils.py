@@ -125,7 +125,7 @@ def get_domain(urls: Optional[list or str] = get_txt) -> list:
     urls = [urls] if type(urls) == str else urls
     results = []
     for url in urls:
-        regex = r'(?:https?://)?(?:www\.)?([a-zA-Z0-9-]+\.[a-zA-Z0-9.-]+)'
+        regex = re.compile(r'^(?:https?://|www)(\S+)$', re.IGNORECASE)
         result = re.findall(regex, url)
         if not result:
             hoshino.logger.error(f"Url{url} 未能找到域名")
